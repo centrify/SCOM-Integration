@@ -1,6 +1,6 @@
 
 # Integrating SCOM with Server Suite
-This documentation is for people who are deploying the Centrify custom SCOM management pack. This documentation includes information about prerequisites, setup, and how to use the Centrify custom [SCOM management pack](https://confluence.centrify.com/pages/viewpage.action?pageId=61538958).
+This documentation is for people who are deploying the Centrify custom SCOM management pack. This documentation includes information about prerequisites, setup, and how to use the Centrify custom SCOM management pack.
 
 ## Prerequisites
 1. System Center Operation Manager (SCOM) 2016 or above.
