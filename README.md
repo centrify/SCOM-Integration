@@ -4,10 +4,10 @@ This documentation is for people who are deploying the Centrify custom SCOM mana
 
 ## Prerequisites
 1. System Center Operation Manager (SCOM) 2016 or above.
-  1. Management Server. (Required)
-  2. Operations Console. (Required)
-  3. Web Console. (Optional)
-  4. Reporting Server. (Optional)
+    - Management Server. (Required)
+    - Operations Console. (Required)
+    - Web Console. (Optional)
+    - Reporting Server. (Optional)
 2. Microsoft SQL Server.
 3. For detailed prerequisites of SCOM 2016, please go through this [https://docs.microsoft.com/en-us/system-center/scom/system-requirements?view=sc-om-2016](https://docs.microsoft.com/en-us/system-center/scom/system-requirements?view=sc-om-2016).
 4. Centrify Products installed that need to be monitored.
@@ -47,22 +47,22 @@ Before you add Unix or Linux systems, you need to first configure the resource p
 8. On the next screen, enter the credentials that you want to use for monitoring the UNIX/Linux system(s).  These accounts must exist on each UNIX/Linux system and have the required permissions.
 9. Choose distribution security. The  **More Secure**  option is recommended.
 10. Because of the More Secure distribution security selection, choose the distribution of the Run As account.
-  1. Find your  **UNIX/Linux Monitoring Account**  under the UNIX/Linux Accounts screen, and open the properties.
-  2. On the Distribution Security screen, click  **Add** , then select  **Search by resource pool name**  and click  **Search**.
-  3. Find your Unix/Linux monitoring resource pool, and click  **Add** , then click  **OK**.  This distributes the account credential to all management servers in the pool.
+    - Find your  **UNIX/Linux Monitoring Account**  under the UNIX/Linux Accounts screen, and open the properties.
+    - On the Distribution Security screen, click  **Add** , then select  **Search by resource pool name**  and click  **Search**.
+    - Find your Unix/Linux monitoring resource pool, and click  **Add** , then click  **OK**.  This distributes the account credential to all management servers in the pool.
 11. Create the Agent Maintenance Account, following a similar process as earlier.
  The Agent Maintenance Account is used for SSH, which includes the ability to deploy, install, uninstall, upgrade, and sign certificates –- these are all activities that involve the agent on the UNIX/Linux system.
-  1. On the wizard presented, give the Agent Maintenance account a name:
-  2. From here you can choose to use an SSH key, or a username and password credential only.  You also can choose to leverage a privileged account or a regular account that uses sudo.
-  3. Repeat the steps to choose the distribution security and the Run As Account distribution.
+    - On the wizard presented, give the Agent Maintenance account a name:
+    - From here you can choose to use an SSH key, or a username and password credential only.  You also can choose to leverage a privileged account or a regular account that uses sudo.
+    - Repeat the steps to choose the distribution security and the Run As Account distribution.
 12. Configure the Run As profiles.
  There are three profiles for Unix/Linux accounts:
-  - Unix/Linux Action Account
-  - Unix/Linux Agent Maintenance Account
-  - Unix/Linux Privileged Account
-  - Start with the Unix/Linux Action Account profile.  Right-click the account and choose  **Properties** , and on the Run As Accounts screen, click  **Add** , then select the "UNIX/Linux Monitoring Account". Leave the default of "All Targeted Objects" and click  **OK** , then click  **Save**.
-  - Repeat this same process for the Unix/Linux Privileged Account profile, and associate it with your "UNIX/Linux Monitoring Account".
-  - Repeat this same process for the Unix/Linux Agent Maintenance Account profile, but use the "Unix/Linux Agent Maintenance Account".
+    - Unix/Linux Action Account
+    - Unix/Linux Agent Maintenance Account
+    - Unix/Linux Privileged Account
+ Start with the Unix/Linux Action Account profile.  Right-click the account and choose  **Properties** , and on the Run As Accounts screen, click  **Add** , then select the "UNIX/Linux Monitoring Account". Leave the default of "All Targeted Objects" and click  **OK** , then click  **Save**.
+    - Repeat this same process for the Unix/Linux Privileged Account profile, and associate it with your "UNIX/Linux Monitoring Account".
+    - Repeat this same process for the Unix/Linux Agent Maintenance Account profile, but use the "Unix/Linux Agent Maintenance Account".
 
 ## Adding the Unix/Linux systems in SCOM
 1. Open the Discovery Wizard (_as mentioned in the first section above_).
