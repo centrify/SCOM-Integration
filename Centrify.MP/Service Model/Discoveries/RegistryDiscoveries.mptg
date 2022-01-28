@@ -1,0 +1,131 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instance83f828fbeb92437f9b5117dedd9bbe70" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.Discovery" Version="1.0.0.0">
+      <DiscoveryConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>Discovery.DZ.Agent.ForWindows</Id>
+        <DisplayName>Discover Centrify DirectAuthorize Agent</DisplayName>
+        <Description>Discover Centrify DirectAuthorize Agent on Windows machine</Description>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;ComputerName&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/ComputerName&gt;&lt;RegistryAttributeDefinitions&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;AgentExists&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAuthorize\Agent&lt;/Path&gt;&lt;PathType&gt;0&lt;/PathType&gt;&lt;AttributeType&gt;0&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentTenantUrl&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAuthorize\Agent\CurrentTenantUrl&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentZoneCanonicalName&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAuthorize\Agent\CurrentZoneCanonicalName&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;Version&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAuthorize\Agent\Version&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;/RegistryAttributeDefinitions&gt;&lt;Frequency&gt;
+    100
+  &lt;/Frequency&gt;&lt;ClassId&gt;$MPElement[Name="Centrify.MP.DZ.Agent"]$&lt;/ClassId&gt;&lt;InstanceSettings&gt;&lt;Settings&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="System!System.Entity"]/DisplayName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DZ.Agent"]/CurrentTenantUrl$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentTenantUrl$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DZ.Agent"]/CurrentZoneCanonicalName$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentZoneCanonicalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DZ.Agent"]/Version$&lt;/Name&gt;&lt;Value&gt;$Data/Values/Version$&lt;/Value&gt;&lt;/Setting&gt;&lt;/Settings&gt;&lt;/InstanceSettings&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery&gt;Values/AgentExists&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value&gt;true&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;</DataSourceConfig>
+        <DataSourceType>Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider</DataSourceType>
+        <Target>Windows!Microsoft.Windows.Computer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Category>Discovery</Category>
+        <DiscoveryClasses>
+          <DiscoveryClassItem>
+            <TypeId>Centrify.MP.DZ.Agent</TypeId>
+            <Properties />
+          </DiscoveryClassItem>
+        </DiscoveryClasses>
+        <DiscoveryRelationships />
+      </DiscoveryConfig>
+    </Instance>
+    <Instance ID="Instance4a8abec9260449ce8a3b29702b4580de" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.Discovery" Version="1.0.0.0">
+      <DiscoveryConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Discovery.Collector.ForWindows</Id>
+        <DisplayName>Discover Centrify Collector</DisplayName>
+        <Description>Discover Centrify Collector on Windows machine</Description>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;ComputerName&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/ComputerName&gt;&lt;RegistryAttributeDefinitions&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CollectorExists&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Collector&lt;/Path&gt;&lt;PathType&gt;0&lt;/PathType&gt;&lt;AttributeType&gt;0&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentDatabase&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Collector\CurrentDatabase&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentInstallation&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Collector\CurrentInstallation&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentAuditStore&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Collector\CurrentAuditStore&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;Version&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Collector\Version&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;/RegistryAttributeDefinitions&gt;&lt;Frequency&gt;
+    100
+  &lt;/Frequency&gt;&lt;ClassId&gt;$MPElement[Name="Centrify.MP.Collector"]$&lt;/ClassId&gt;&lt;InstanceSettings&gt;&lt;Settings&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="System!System.Entity"]/DisplayName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.Collector"]/CurrentInstallation$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentInstallation$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.Collector"]/CurrentDatabase$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentDatabase$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.Collector"]/CurrentAuditStore$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentAuditStore$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.Collector"]/Version$&lt;/Name&gt;&lt;Value&gt;$Data/Values/Version$&lt;/Value&gt;&lt;/Setting&gt;&lt;/Settings&gt;&lt;/InstanceSettings&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery&gt;Values/CollectorExists&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value&gt;true&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;</DataSourceConfig>
+        <DataSourceType>Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider</DataSourceType>
+        <Target>Windows!Microsoft.Windows.Computer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Category>Discovery</Category>
+        <DiscoveryClasses>
+          <DiscoveryClassItem>
+            <TypeId>Centrify.MP.Collector</TypeId>
+            <Properties />
+          </DiscoveryClassItem>
+        </DiscoveryClasses>
+        <DiscoveryRelationships />
+      </DiscoveryConfig>
+    </Instance>
+    <Instance ID="Instanceee335968b6674b41b39d560bb99c2963" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.Discovery" Version="1.0.0.0">
+      <DiscoveryConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Id>Discovery.DA.Agent.ForWindows</Id>
+        <DisplayName>Discover Centrify DirectAudit Agent</DisplayName>
+        <Description>Discover Centrify DirectAudit Agent on Windows machine</Description>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;ComputerName&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/ComputerName&gt;&lt;RegistryAttributeDefinitions&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;AgentExists&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent&lt;/Path&gt;&lt;PathType&gt;0&lt;/PathType&gt;&lt;AttributeType&gt;0&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentCollector&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent\CurrentCollector&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentInstallation&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent\CurrentInstallation&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentAuditStore&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent\CurrentAuditStore&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;Version&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent\Version&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;RegistryAttributeDefinition&gt;&lt;AttributeName&gt;CurrentState&lt;/AttributeName&gt;&lt;Path&gt;SOFTWARE\Centrify\DirectAudit\Agent\CurrentState&lt;/Path&gt;&lt;PathType&gt;1&lt;/PathType&gt;&lt;AttributeType&gt;1&lt;/AttributeType&gt;&lt;/RegistryAttributeDefinition&gt;&lt;/RegistryAttributeDefinitions&gt;&lt;Frequency&gt;
+    100
+  &lt;/Frequency&gt;&lt;ClassId&gt;$MPElement[Name="Centrify.MP.DA.Agent"]$&lt;/ClassId&gt;&lt;InstanceSettings&gt;&lt;Settings&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="System!System.Entity"]/DisplayName$&lt;/Name&gt;&lt;Value&gt;$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentInstallation$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentInstallation$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentCollector$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentCollector$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentAuditStore$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentAuditStore$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DA.Agent"]/Version$&lt;/Name&gt;&lt;Value&gt;$Data/Values/Version$&lt;/Value&gt;&lt;/Setting&gt;&lt;Setting&gt;&lt;Name&gt;$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentState$&lt;/Name&gt;&lt;Value&gt;$Data/Values/CurrentState$&lt;/Value&gt;&lt;/Setting&gt;&lt;/Settings&gt;&lt;/InstanceSettings&gt;&lt;Expression&gt;&lt;SimpleExpression&gt;&lt;ValueExpression&gt;&lt;XPathQuery&gt;Values/AgentExists&lt;/XPathQuery&gt;&lt;/ValueExpression&gt;&lt;Operator&gt;Equal&lt;/Operator&gt;&lt;ValueExpression&gt;&lt;Value&gt;true&lt;/Value&gt;&lt;/ValueExpression&gt;&lt;/SimpleExpression&gt;&lt;/Expression&gt;</DataSourceConfig>
+        <DataSourceType>Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider</DataSourceType>
+        <Target>Windows!Microsoft.Windows.Computer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Category>Discovery</Category>
+        <DiscoveryClasses>
+          <DiscoveryClassItem>
+            <TypeId>Centrify.MP.DA.Agent</TypeId>
+            <Properties />
+          </DiscoveryClassItem>
+        </DiscoveryClasses>
+        <DiscoveryRelationships />
+      </DiscoveryConfig>
+    </Instance>
+    <Instance ID="Instance16a44c141f9949778d7ad239ef7a52b3" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.Discovery" Version="1.0.0.0">
+      <DiscoveryConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Centrify.MP.Discovery.DA.NixAgent</Id>
+        <DisplayName>Centrify MP *Nix Agent Discovery</DisplayName>
+        <Description>Centrify MP *Nix Agent Extended Class Discovery</Description>
+        <DataSourceId>DS</DataSourceId>
+        <DataSourceConfig>&lt;Interval&gt;300&lt;/Interval&gt;&lt;TargetSystem&gt;$Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$&lt;/TargetSystem&gt;</DataSourceConfig>
+        <DataSourceType>Centrify.MP.DA.NixAgent.Discovery.Datasource</DataSourceType>
+        <Target>Unix!Microsoft.Unix.Computer</Target>
+        <Enabled>true</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Category>Discovery</Category>
+        <DiscoveryClasses>
+          <DiscoveryClassItem>
+            <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+            <Properties>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>Adclient</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>CurrentInstallation</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>CurrentCollector</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>NssModule</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>AdvancedMonitoring</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>DesktopAuditing</Property>
+              </DiscoveredTypeProperty>
+              <DiscoveredTypeProperty>
+                <TypeId>Centrify.MP.DA.NixAgent</TypeId>
+                <Property>Daemon</Property>
+              </DiscoveredTypeProperty>
+            </Properties>
+          </DiscoveryClassItem>
+        </DiscoveryClasses>
+        <DiscoveryRelationships />
+      </DiscoveryConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

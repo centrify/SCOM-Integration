@@ -1,0 +1,365 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    
+    
+    <ModuleTypes>
+
+      <!--Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag-->
+      <DataSourceModuleType ID="Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag" Accessibility="Internal">
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Schedule" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="Script" TypeID="Centrify.MP.Probe.DA.Agent.MonitorRegistry">
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script">
+                <Node ID="Schedule" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+      <!--Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag-->
+      <DataSourceModuleType ID="Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag" Accessibility="Internal">
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int"/>
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string"/>
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Schedule" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="Script" TypeID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry">
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script">
+                <Node ID="Schedule" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+
+
+      <!--Centrify.MP.DA.NixAgent.Discovery.Datasource-->
+      <DataSourceModuleType ID="Centrify.MP.DA.NixAgent.Discovery.Datasource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="Interval" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TargetSystem" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Interval" Selector="$Config/Interval$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="DS" TypeID="Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource">
+                <Interval>$Config/Interval$</Interval>
+                <TargetSystem>$Config/TargetSystem$</TargetSystem>
+                <ShellCommand>dainfo</ShellCommand>
+                <Timeout>30</Timeout>
+              </DataSource>
+              <ProbeAction ID="PSDisco" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>Centrify.MP.DA.NixAgent.Discovery.Datasource.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Service Model/Discoveries/DA.NixAgent.Discovery.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>SourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>ManagedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>TargetSystem</Name>
+                    <Value>$Config/TargetSystem$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>StdOut</Name>
+                    <Value>$Data///*[local-name()="StdOut"]$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSDisco">
+                <Node ID="DS" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <!--Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource-->
+      <DataSourceModuleType ID="Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="Interval" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TargetSystem" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ShellCommand" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="Timeout" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval>$Config/Interval$</Interval>
+                    <SyncTime />
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="ProbeAction" TypeID="Unix!Microsoft.Unix.WSMan.Invoke.ProbeAction">
+                <TargetSystem>$Config/TargetSystem$</TargetSystem>
+                <Uri>http://schemas.microsoft.com/wbem/wscim/1/cim-schema/2/SCX_OperatingSystem?__cimnamespace=root/scx</Uri>
+                <Selector />
+                <InvokeAction>ExecuteShellCommand</InvokeAction>
+                <Input>&lt;p:ExecuteShellCommand_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wscim/1/cim-schema/2/SCX_OperatingSystem"&gt;&lt;p:command&gt;$Config/ShellCommand$&lt;/p:command&gt;&lt;p:timeout&gt;$Config/Timeout$&lt;/p:timeout&gt;&lt;/p:ExecuteShellCommand_INPUT&gt;</Input>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="ProbeAction">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>MSWL!Microsoft.SystemCenter.WSManagement.WSManData</OutputType>
+      </DataSourceModuleType>
+
+
+
+      <!--Centrify.MP.Probe.DA.Agent.MonitorRegistry-->
+      <ProbeActionModuleType ID="Centrify.MP.Probe.DA.Agent.MonitorRegistry" Accessibility="Internal">
+        <Configuration></Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>DA.Agent.MonitorRegistry.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Health Model/DA.Agent.MonitorRegistry.ps1$</ScriptBody>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+      <!--Centrify.MP.Probe.DZ.Agent.MonitorRegistry-->
+      <ProbeActionModuleType ID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry" Accessibility="Internal">
+        <Configuration></Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>DZ.Agent.MonitorRegistry.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Health Model/DZ.Agent.MonitorRegistry.ps1$</ScriptBody>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+
+
+    </ModuleTypes>
+
+    
+    <MonitorTypes>
+
+      <!--Centrify.MP.MonitorType.DA.Agent.MonitorRegistry-->
+      <UnitMonitorType ID="Centrify.MP.MonitorType.DA.Agent.MonitorRegistry" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="DaAgentDown" NoDetection="false" />
+          <MonitorTypeState ID="DaAgentUp" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="Centrify.MP.Probe.DA.Agent.MonitorRegistry">
+            </ProbeAction>
+            <ConditionDetection ID="FilterDaDown" TypeID="System!System.ExpressionFilter" >
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DaAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="FilterDaUp" TypeID="System!System.ExpressionFilter" >
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DaAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">0</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="DaAgentDown">
+              <Node ID="FilterDaDown">
+                <Node ID="DS"/>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="DaAgentUp">
+              <Node ID="FilterDaUp">
+                <Node ID="DS"/>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+          <OnDemandDetections>
+            <OnDemandDetection MonitorTypeStateID="DaAgentDown">
+              <Node ID="FilterDaDown">
+                <Node ID="Probe"/>
+              </Node>
+            </OnDemandDetection>
+            <OnDemandDetection MonitorTypeStateID="DaAgentUp">
+              <Node ID="FilterDaUp">
+                <Node ID="Probe"/>
+              </Node>
+            </OnDemandDetection>
+          </OnDemandDetections>
+          
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+      <!--Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry-->
+      <UnitMonitorType ID="Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="DzAgentDown" NoDetection="false" />
+          <MonitorTypeState ID="DzAgentUp" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry">
+            </ProbeAction>
+            <ConditionDetection ID="FilterDzDown" TypeID="System!System.ExpressionFilter" >
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DzAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="FilterDzUp" TypeID="System!System.ExpressionFilter" >
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DzAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">0</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="DzAgentDown">
+              <Node ID="FilterDzDown">
+                <Node ID="DS"/>
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="DzAgentUp">
+              <Node ID="FilterDzUp">
+                <Node ID="DS"/>
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+          <OnDemandDetections>
+            <OnDemandDetection MonitorTypeStateID="DzAgentDown">
+              <Node ID="FilterDzDown">
+                <Node ID="Probe"/>
+              </Node>
+            </OnDemandDetection>
+            <OnDemandDetection MonitorTypeStateID="DzAgentUp">
+              <Node ID="FilterDzUp">
+                <Node ID="Probe"/>
+              </Node>
+            </OnDemandDetection>
+          </OnDemandDetections>
+
+        </MonitorImplementation>
+      </UnitMonitorType>
+
+    </MonitorTypes>
+
+    
+  </TypeDefinitions>
+</ManagementPackFragment>

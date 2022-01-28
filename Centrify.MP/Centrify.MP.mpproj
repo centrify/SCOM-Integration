@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{e6c91317-7785-445a-a93e-333e42185d35}</ProjectGuid>
+    <RootNamespace>Centrify.MP</RootNamespace>
+    <Name>Centrify.MP</Name>
+    <ManagementPackName>Centrify.MP</ManagementPackName>
+    <Version>1.0.0.0</Version>
+    <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
+    <MpFrameworkProfile>OM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Centrify</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\MP-SN.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="Microsoft.SystemCenter.DataWarehouse.Library">
+      <HintPath>C:\Users\administrator.YTDEV\Downloads\Microsoft.SystemCenter.DataWarehouse.Library.mp</HintPath>
+      <Alias>MSDL</Alias>
+      <MinVersion>7.1.10226.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.InstanceGroup.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2012R2\Microsoft.SystemCenter.InstanceGroup.Library.mp</HintPath>
+      <Alias>InstanceGroup</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.WSManagement.Library">
+      <HintPath>C:\MySource\depot\SUITE\DA\360258_[CS-49937]_SCOM\References\Microsoft.SystemCenter.WSManagement.Library.mp</HintPath>
+      <Alias>MSWL</Alias>
+      <MinVersion>7.1.10226.0</MinVersion>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Unix.Library">
+      <HintPath>C:\MySource\depot\SUITE\DA\360258_[CS-49937]_SCOM\References\Microsoft.Unix.Library.mp</HintPath>
+      <Alias>Unix</Alias>
+      <MinVersion>7.5.1043.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Library">
+      <Alias>Windows</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Health.Library">
+      <Alias>Health</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Performance.Library">
+      <HintPath>C:\Program Files (x86)\System Center Visual Studio Authoring Extensions\References\OM2007R2\System.Performance.Library.mp</HintPath>
+      <Alias>Perf</Alias>
+      <MinVersion>6.1.7221.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Unix.Authoring.Library">
+      <HintPath>C:\MySource\depot\SUITE\DA\360258_[CS-49937]_SCOM\References\Unix.Authoring.Library.mp</HintPath>
+      <Alias>UnixAuth</Alias>
+      <MinVersion>7.3.1.2</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Health Model\DA.NixAgent.DaemonMonitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Health Model\DA.NixAgent.DiskSpaceMonitor.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Health Model\Monitors.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Health Model\Monitors.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="Health Model\Modules.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\Folders.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presentation\Views.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Presentation\Views.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="Project.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Classes\DA.Agent.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Classes\Collector.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Classes\DZ.Agent.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Classes\DA.NixAgent.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Discoveries\RegistryDiscoveries.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>Service Model\Discoveries\RegistryDiscoveries.mptg</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Health Model" />
+    <Folder Include="Presentation" />
+    <Folder Include="Service Model" />
+    <Folder Include="Service Model\Classes" />
+    <Folder Include="Service Model\Discoveries" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Health Model\Monitors.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+    <Content Include="Presentation\Views.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+    <Content Include="Service Model\Discoveries\RegistryDiscoveries.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Health Model\DA.Agent.MonitorRegistry.ps1" />
+    <EmbeddedResource Include="Health Model\DA.NixAgent.DaemonMonitor.ps1" />
+    <EmbeddedResource Include="Health Model\DA.NixAgent.DiskSpaceMonitor.ps1" />
+    <EmbeddedResource Include="Health Model\DZ.Agent.MonitorRegistry.ps1" />
+    <EmbeddedResource Include="Service Model\Discoveries\DA.NixAgent.Discovery.ps1" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

@@ -1,0 +1,226 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instance23eccc18ea25405baca9e1b6222b6084" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Perf!System.Performance.ConsecutiveSamplesThreshold</MonitorType>
+        <MonitorConfig>&lt;ComputerName&gt;$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$&lt;/ComputerName&gt;&lt;CounterName&gt;% Free Space&lt;/CounterName&gt;&lt;ObjectName&gt;LogicalDisk&lt;/ObjectName&gt;&lt;InstanceName&gt;C:&lt;/InstanceName&gt;&lt;AllInstances&gt;false&lt;/AllInstances&gt;&lt;Frequency&gt;60&lt;/Frequency&gt;&lt;Threshold&gt;80&lt;/Threshold&gt;&lt;Direction&gt;less&lt;/Direction&gt;&lt;NumSamples&gt;3&lt;/NumSamples&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>ConditionTrue</OperationalStateId>
+            <OperationalStateDisplayName>ConditionTrue</OperationalStateDisplayName>
+            <MonitorTypeStateId>ConditionTrue</MonitorTypeStateId>
+            <HealthState>Warning</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>ConditionFalse</OperationalStateId>
+            <OperationalStateDisplayName>ConditionFalse</OperationalStateDisplayName>
+            <MonitorTypeStateId>ConditionFalse</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.PerformanceState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.DA.Agent.DiskSpace</Id>
+        <DisplayName>DirectAudit Agent DiskSpace</DisplayName>
+        <Description>Monitors DirectAudit Agent machine's C drive disk space</Description>
+        <Target>Centrify.MP.DA.Agent</Target>
+        <Enabled>true</Enabled>
+        <Category>PerformanceHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Warning</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>DirectAudit Agent machine % Free disk space</AlertName>
+        <AlertDescription>DirectAudit Agent machine % Free disk space for C drive is less than 80% for 3 consicutive measurements.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instancecdcce052338d451c8e78565de9127c8b" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Windows!Microsoft.Windows.CheckNTServiceStateMonitorType</MonitorType>
+        <MonitorConfig>&lt;ComputerName&gt;$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$&lt;/ComputerName&gt;&lt;ServiceName&gt;DirectAudit Collector&lt;/ServiceName&gt;&lt;CheckStartupType&gt;false&lt;/CheckStartupType&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>Running</OperationalStateId>
+            <OperationalStateDisplayName>Running</OperationalStateDisplayName>
+            <MonitorTypeStateId>Running</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NotRunning</OperationalStateId>
+            <OperationalStateDisplayName>NotRunning</OperationalStateDisplayName>
+            <MonitorTypeStateId>NotRunning</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.Collector.ServiceRunning</Id>
+        <DisplayName>Collector Service Running</DisplayName>
+        <Description>Monitors if Collector service running or not</Description>
+        <Target>Centrify.MP.Collector</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>Collector Service not running</AlertName>
+        <AlertDescription>The Collector service is no longer running.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance59fd74ef4ddd436d84ec034490c84673" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Windows!Microsoft.Windows.CheckNTServiceStateMonitorType</MonitorType>
+        <MonitorConfig>&lt;ComputerName&gt;$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$&lt;/ComputerName&gt;&lt;ServiceName&gt;DirectAudit Agent&lt;/ServiceName&gt;&lt;CheckStartupType&gt;false&lt;/CheckStartupType&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>Running</OperationalStateId>
+            <OperationalStateDisplayName>Running</OperationalStateDisplayName>
+            <MonitorTypeStateId>Running</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NotRunning</OperationalStateId>
+            <OperationalStateDisplayName>NotRunning</OperationalStateDisplayName>
+            <MonitorTypeStateId>NotRunning</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.DA.Agent.ServiceRunning</Id>
+        <DisplayName>DirectAudit Agent Service Running</DisplayName>
+        <Description>Monitors if DirectAudit Agent service running or not</Description>
+        <Target>Centrify.MP.DA.Agent</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>DirectAudit Agent Service not running</AlertName>
+        <AlertDescription>The DirectAudit Agent service is no longer running.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance013cac1b4fe843ea9dd5369f98ba18d9" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Windows!Microsoft.Windows.CheckNTServiceStateMonitorType</MonitorType>
+        <MonitorConfig>&lt;ComputerName&gt;$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$&lt;/ComputerName&gt;&lt;ServiceName&gt;DirectAuthorize Agent&lt;/ServiceName&gt;&lt;CheckStartupType&gt;false&lt;/CheckStartupType&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>Running</OperationalStateId>
+            <OperationalStateDisplayName>Running</OperationalStateDisplayName>
+            <MonitorTypeStateId>Running</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>NotRunning</OperationalStateId>
+            <OperationalStateDisplayName>NotRunning</OperationalStateDisplayName>
+            <MonitorTypeStateId>NotRunning</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.DZ.Agent.ServiceRunning</Id>
+        <DisplayName>DirectAuthorize Agent Service Running</DisplayName>
+        <Description>Monitors if DirectAuthorize Agent service running or not</Description>
+        <Target>Centrify.MP.DZ.Agent</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>DirectAuthorize Agent Service not running</AlertName>
+        <AlertDescription>The DirectAuthorize Agent service is no longer running.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instancee7110be73d7441f2a735e566a7568268" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;120&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>DzAgentDown</OperationalStateId>
+            <OperationalStateDisplayName>DzAgentDown</OperationalStateDisplayName>
+            <MonitorTypeStateId>DzAgentDown</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>DzAgentUp</OperationalStateId>
+            <OperationalStateDisplayName>DzAgentUp</OperationalStateDisplayName>
+            <MonitorTypeStateId>DzAgentUp</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.DZ.Agent.RegistryState</Id>
+        <DisplayName>DirectAuthorize Agent Registry State</DisplayName>
+        <Description>Monitors DirectAuthorize Agent's State as per registry entry.</Description>
+        <Target>Centrify.MP.DZ.Agent</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>DirectAuthorize Agent Service Down</AlertName>
+        <AlertDescription>DirectAuthorize Agent service is down as per registry state.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+    <Instance ID="Instance0706018c22404a348fbda1970a1015c8" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.UnitMonitor" Version="1.0.0.0">
+      <UnitMonitorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <MonitorType>Centrify.MP.MonitorType.DA.Agent.MonitorRegistry</MonitorType>
+        <MonitorConfig>&lt;IntervalSeconds&gt;120&lt;/IntervalSeconds&gt;&lt;SyncTime /&gt;</MonitorConfig>
+        <MonitorOperationalStates>
+          <OperationalState>
+            <OperationalStateId>DaAgentDown</OperationalStateId>
+            <OperationalStateDisplayName>DaAgentDown</OperationalStateDisplayName>
+            <MonitorTypeStateId>DaAgentDown</MonitorTypeStateId>
+            <HealthState>Error</HealthState>
+          </OperationalState>
+          <OperationalState>
+            <OperationalStateId>DaAgentUp</OperationalStateId>
+            <OperationalStateDisplayName>DaAgentUp</OperationalStateDisplayName>
+            <MonitorTypeStateId>DaAgentUp</MonitorTypeStateId>
+            <HealthState>Success</HealthState>
+          </OperationalState>
+        </MonitorOperationalStates>
+        <ParentMonitor>Health!System.Health.AvailabilityState</ParentMonitor>
+        <Accessibility>Public</Accessibility>
+        <Id>Monitor.DA.Agent.RegistryState</Id>
+        <DisplayName>DirectAudit Agent Registry State</DisplayName>
+        <Description>Monitors DirectAudit Agent's State as per registry entry.</Description>
+        <Target>Centrify.MP.DA.Agent</Target>
+        <Enabled>true</Enabled>
+        <Category>AvailabilityHealth</Category>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <AlertAutoResolve>true</AlertAutoResolve>
+        <AlertOnState>Error</AlertOnState>
+        <AlertPriority>Normal</AlertPriority>
+        <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        <AlertName>DirectAudit Agent Service Down</AlertName>
+        <AlertDescription>DirectAudit Agent service is down as per registry state.</AlertDescription>
+        <ConfirmDelivery>false</ConfirmDelivery>
+      </UnitMonitorConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

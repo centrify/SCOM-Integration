@@ -1,0 +1,79 @@
+﻿<!--
+Developed using reference from below article
+https://social.technet.microsoft.com/wiki/contents/articles/18097.scom-2012-unixlinux-authoring-library-mp-reference-unit-monitor-types.aspx#UNIX_Linux_Shell_Command_Property_Bag_Matches_Expression_Two-State_Monitor_Type
+-->
+
+<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Monitoring>
+    <Monitors>
+
+      <UnitMonitor Accessibility="Internal" Enabled="true" Remotable="true" Priority="Normal" ConfirmDelivery="false"
+                   ID="Centrify.MP.Monitor.DA.NixAgent.Daemon"
+                   Target="Centrify.MP.DA.NixAgent"
+                   ParentMonitorID="Health!System.Health.AvailabilityState"
+                   TypeID="UnixAuth!Unix.Authoring.ShellCommand.PropertyBag.MatchesRegExp.TwoState.MonitorType">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+          <AlertParameters>
+            <AlertParameter1>
+              $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+            </AlertParameter1>
+            <AlertParameter2>$Data/Context/DataItem/Property[@Name='PropertyValue']$</AlertParameter2>
+          </AlertParameters>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="StatusOK" MonitorTypeStateID="StatusOK" HealthState="Success" />
+          <OperationalState ID="StatusError" MonitorTypeStateID="StatusError" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <Interval>300</Interval>
+          <TargetSystem>
+            $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+          </TargetSystem>
+          <ShellCommand>dainfo</ShellCommand>
+          <Timeout>60</Timeout>
+          <UserName>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/UserName$</UserName>
+          <Password>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/Password$</Password>
+          <PSScriptName>DA.NixAgent.DaemonMonitor.ps1</PSScriptName>
+          <PSScriptBody>$IncludeFileContent/Health Model/DA.NixAgent.DaemonMonitor.ps1$</PSScriptBody>
+          <FilterExpression>
+            <RegExExpression>
+              <ValueExpression>
+                <XPathQuery>Property[@Name='PropertyName']</XPathQuery>
+              </ValueExpression>
+              <Operator>MatchesRegularExpression</Operator>
+              <Pattern>DaemonStatus</Pattern>
+            </RegExExpression>
+          </FilterExpression>
+          <ValueXPath>Property[@Name='PropertyValue']</ValueXPath>
+          <ErrorRegExp>Offline</ErrorRegExp>
+        </Configuration>
+      </UnitMonitor>
+
+    </Monitors>
+  </Monitoring>
+  <Presentation>
+    <StringResources>
+      <StringResource ID="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.Daemon">
+          <Name>Monitor DA *NixAgent Daemon</Name>
+          <Description>Monitors DirectAudit *Nix Agent's State as per output of dainfo command's daemon status</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage">
+          <Name>DirectAudit *Nix Agent daemon Service Down</Name>
+          <Description>DirectAudit *Nix Agent daemon service is down as per dainfo command</Description>
+        </DisplayString>
+      </DisplayStrings>
+
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

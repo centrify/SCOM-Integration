@@ -1,0 +1,22 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Presentation>
+    <Folders>
+
+      <Folder ID="Centrify.MP.Folder" Accessibility="Public" ParentFolder="SC!Microsoft.SystemCenter.Monitoring.ViewFolder.Root" />
+    
+    </Folders>
+    
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        
+        <DisplayString ElementID="Centrify.MP.Folder">
+          <Name>Centrify</Name>
+          <Description>Centrify Management Pack</Description>
+        </DisplayString>
+        
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

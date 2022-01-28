@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ManagementPack SchemaVersion="2.0" ContentReadable="true" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manifest>
+    <Identity>
+      <ID>Centrify.MP</ID>
+      <Version>1.0.0.214</Version>
+    </Identity>
+    <Name>Centrify.MP</Name>
+    <References>
+      <Reference Alias="SC">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="MSWL">
+        <ID>Microsoft.SystemCenter.WSManagement.Library</ID>
+        <Version>7.1.10226.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Unix">
+        <ID>Microsoft.Unix.Library</ID>
+        <Version>7.5.1043.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Health">
+        <ID>System.Health.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Perf">
+        <ID>System.Performance.Library</ID>
+        <Version>6.1.7221.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="UnixAuth">
+        <ID>Unix.Authoring.Library</ID>
+        <Version>7.3.1.2</Version>
+        <PublicKeyToken>a0ae1bc76c673799</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="Centrify.MP.DA.Agent" Base="Windows!Microsoft.Windows.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="CurrentInstallation" Key="false" Type="string" />
+          <Property ID="CurrentCollector" Key="false" Type="string" />
+          <Property ID="CurrentAuditStore" Key="false" Type="string" />
+          <Property ID="Version" Key="false" Type="string" />
+          <Property ID="CurrentState" Key="false" Type="int" />
+        </ClassType>
+        <ClassType ID="Centrify.MP.Collector" Base="Windows!Microsoft.Windows.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="CurrentInstallation" Key="false" Type="string" />
+          <Property ID="CurrentDatabase" Key="false" Type="string" />
+          <Property ID="CurrentAuditStore" Key="false" Type="string" />
+          <Property ID="Version" Key="false" Type="string" />
+        </ClassType>
+        <ClassType ID="Centrify.MP.DZ.Agent" Base="Windows!Microsoft.Windows.ApplicationComponent" Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="CurrentTenantUrl" Key="false" Type="string" />
+          <Property ID="CurrentZoneCanonicalName" Key="false" Type="string" />
+          <Property ID="Version" Key="false" Type="string" />
+        </ClassType>
+        <ClassType ID="Centrify.MP.DA.NixAgent" Accessibility="Public" Abstract="false" Base="Unix!Microsoft.Unix.Computer" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="Adclient" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Daemon" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CurrentInstallation" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CurrentCollector" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NssModule" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="AdvancedMonitoring" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="DesktopAuditing" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="Centrify.MP.ComputerHosts.DA.Agent" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="Windows!Microsoft.Windows.Computer" />
+          <Target ID="Target" Type="Centrify.MP.DA.Agent" />
+        </RelationshipType>
+        <RelationshipType ID="Centrify.MP.ComputerHostsCollector" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="Windows!Microsoft.Windows.Computer" />
+          <Target ID="Target" Type="Centrify.MP.Collector" />
+        </RelationshipType>
+        <RelationshipType ID="Centrify.MP.ComputerHosts.DZ.Agent" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="Windows!Microsoft.Windows.Computer" />
+          <Target ID="Target" Type="Centrify.MP.DZ.Agent" />
+        </RelationshipType>
+      </RelationshipTypes>
+    </EntityTypes>
+    <ModuleTypes>
+      <DataSourceModuleType ID="Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag" Accessibility="Internal">
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Schedule" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="Script" TypeID="Centrify.MP.Probe.DA.Agent.MonitorRegistry"></ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script">
+                <Node ID="Schedule" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag" Accessibility="Internal">
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Schedule" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <ProbeAction ID="Script" TypeID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry"></ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script">
+                <Node ID="Schedule" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="Centrify.MP.DA.NixAgent.Discovery.Datasource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="Interval" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TargetSystem" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="Interval" Selector="$Config/Interval$" ParameterType="int" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="DS" TypeID="Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource">
+                <Interval>$Config/Interval$</Interval>
+                <TargetSystem>$Config/TargetSystem$</TargetSystem>
+                <ShellCommand>dainfo</ShellCommand>
+                <Timeout>30</Timeout>
+              </DataSource>
+              <ProbeAction ID="PSDisco" TypeID="Windows!Microsoft.Windows.PowerShellDiscoveryProbe">
+                <ScriptName>Centrify.MP.DA.NixAgent.Discovery.Datasource.ps1</ScriptName>
+                <ScriptBody><![CDATA[param($SourceId,$ManagedEntityId,$TargetSystem,$StdOut)
+
+# For testing discovery manually in PowerShell:
+# $SourceId = '{00000000-0000-0000-0000-000000000000}'
+# $ManagedEntityId = '{00000000-0000-0000-0000-000000000000}'
+# $StdOut = "2,LINUX,kevinhol"
+# $TargetSystem = "ubuntu.opsmgr.net"
+
+#=================================================================================
+# Constants section - modify stuff here:
+
+# Assign script name variable for use in event logging
+$ScriptName = "Centrify.MP.Discovery.NixAgent.Datasource.ps1"
+#=================================================================================
+
+# Gather script start time
+$StartTime = Get-Date
+
+# Gather who the script is running as
+$WhoAmI = whoami
+
+# Load MOMScript API
+$momapi = New-Object -comObject MOM.ScriptAPI
+
+# Load SCOM Discovery module
+$DiscoveryData = $momapi.CreateDiscoveryData(0, $SourceId, $ManagedEntityId)
+
+# Log an event for the script starting
+$momapi.LogScriptEvent($ScriptName,6666,0, "Script is starting. *Nix Agent: ($TargetSystem) StdOut: ($StdOut) Running, as $WhoAmI.")
+
+# Clear any previous errors
+if($Error)
+{
+$Error.Clear()
+}
+
+
+#=================================================================================
+# MAIN body of your script
+
+if($StdOut -ne $null -and $StdOut -ne "0" -and $StdOut -ne "")
+{
+	$str = $StdOut
+	$adclient = ""
+	$daemon = ""
+	$installation = ""
+	$collector = ""
+	$NssModule = ""
+	$advMonitor = ""
+	$deskAudit = ""
+
+	foreach($line in $str.Split([Environment]::NewLine))
+	{
+		$keyVal = $line.Split(":")
+		switch($keyVal[0].Trim().ToLower())
+		{
+			"pinging adclient"{ $adclient = $keyVal[1].Trim() }
+			"daemon status"{ $daemon = $keyVal[1].Trim() }
+			"current installation"{ $installation = $keyVal[1].Trim() }
+			"current collector"{ $collector = $keyVal[1].Trim() }
+			"directAudit nss module"{ $NssModule = $keyVal[1].Trim() }
+			"directAudit advanced monitoring"{ $advMonitor = $keyVal[1].Trim() }
+			"directAudit desktop auditing"{ $deskAudit = $keyVal[1].Trim() }
+		}
+	}
+
+	# Create discovery data
+	$Inst = $DiscoveryData.CreateClassInstance("$MPElement[Name='Centrify.MP.DA.NixAgent']$")
+	$Inst.AddProperty("$MPElement[Name='Unix!Microsoft.Unix.Computer']/PrincipalName$", $TargetSystem)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/Adclient$", $adclient)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/Daemon$", $daemon)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/CurrentInstallation$", $installation)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/CurrentCollector$", $collector)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/NssModule$", $NssModule)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/AdvancedMonitoring$", $advMonitor)
+	$Inst.AddProperty("$MPElement[Name='Centrify.MP.DA.NixAgent']/DesktopAuditing$", $deskAudit)
+	$DiscoveryData.AddInstance($Inst)
+	#=================================================================================
+
+	# Return Discovery Items Normally
+	$DiscoveryData
+
+	# Return Discovery Bag to the command line for testing (does not work from ISE):
+	#  $momapi.Return($DiscoveryData)
+}
+Else
+{
+# Log an event the StdOut was NULL
+$momapi.LogScriptEvent($ScriptName,6667,2, "StdOut was NULL.  Did not get any data from *Nix Shell Command")
+}
+
+# End script and record total runtime
+$EndTime = Get-Date
+$ScriptTime = ($EndTime - $StartTime).TotalSeconds
+# Log an event for script ending and total execution time.
+$momapi.LogScriptEvent($ScriptName,6666,0, "Script has completed.  Runtime was $ScriptTime seconds")]]></ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>SourceID</Name>
+                    <Value>$MPElement$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>ManagedEntityID</Name>
+                    <Value>$Target/Id$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>TargetSystem</Name>
+                    <Value>$Config/TargetSystem$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>StdOut</Name>
+                    <Value>$Data///*[local-name()="StdOut"]$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="PSDisco">
+                <Node ID="DS" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.Discovery.Data</OutputType>
+      </DataSourceModuleType>
+      <DataSourceModuleType ID="Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource" Accessibility="Internal" Batching="false">
+        <Configuration>
+          <xsd:element minOccurs="1" name="Interval" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="TargetSystem" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="ShellCommand" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element minOccurs="1" name="Timeout" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.Scheduler">
+                <Scheduler>
+                  <SimpleReccuringSchedule>
+                    <Interval>$Config/Interval$</Interval>
+                    <SyncTime />
+                  </SimpleReccuringSchedule>
+                  <ExcludeDates />
+                </Scheduler>
+              </DataSource>
+              <ProbeAction ID="ProbeAction" TypeID="Unix!Microsoft.Unix.WSMan.Invoke.ProbeAction">
+                <TargetSystem>$Config/TargetSystem$</TargetSystem>
+                <Uri>http://schemas.microsoft.com/wbem/wscim/1/cim-schema/2/SCX_OperatingSystem?__cimnamespace=root/scx</Uri>
+                <Selector />
+                <InvokeAction>ExecuteShellCommand</InvokeAction>
+                <Input>&lt;p:ExecuteShellCommand_INPUT xmlns:p="http://schemas.microsoft.com/wbem/wscim/1/cim-schema/2/SCX_OperatingSystem"&gt;&lt;p:command&gt;$Config/ShellCommand$&lt;/p:command&gt;&lt;p:timeout&gt;$Config/Timeout$&lt;/p:timeout&gt;&lt;/p:ExecuteShellCommand_INPUT&gt;</Input>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="ProbeAction">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>MSWL!Microsoft.SystemCenter.WSManagement.WSManData</OutputType>
+      </DataSourceModuleType>
+      <ProbeActionModuleType ID="Centrify.MP.Probe.DA.Agent.MonitorRegistry" Accessibility="Internal">
+        <Configuration></Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>DA.Agent.MonitorRegistry.ps1</ScriptName>
+                <ScriptBody><![CDATA[$api = New-Object -ComObject "MOM.ScriptAPI"
+$api.LogScriptEvent("Centrify MP DA.Agent.MonitorRegistry.ps1 Executed", 101, 4, "HKLM:\SOFTWARE\Centrify\DirectAudit\Agent\CurrentState")
+
+$da_agent_state_number = (Get-ItemProperty -Path HKLM:\SOFTWARE\Centrify\DirectAudit\Agent -Name CurrentState).CurrentState
+$da_agent_state = ""
+$da_agent_down = 1
+
+switch ($da_agent_state_number)
+{
+    0 {$da_agent_state = "Unknown"; Break}
+	1 {$da_agent_state = "Stopped"; Break}
+	2 {$da_agent_state = "Initializing"; Break}
+	3 {$da_agent_state = "DeterminingInstallation"; Break}
+	4 {$da_agent_state = "InstallationNotConfigured"; Break}
+	5 {$da_agent_state = "DeterminingAuditStore"; Break}
+	6 {$da_agent_state = "AgentNotInAuditStoreScope"; Break}
+	7 {$da_agent_state = "CollectorNotConnected"; Break}
+	8 {$da_agent_state = "SpoolPartitionFull"; Break}
+	9 {$da_agent_state = "Running"; $da_agent_down = 0; Break}
+	10 {$da_agent_state = "Initialized"; Break}
+	11 {$da_agent_state = "AwaitingCertificate"; Break}
+}
+
+
+$bag = $api.CreatePropertyBag()
+$bag.AddValue("DaAgentStateNumber", $da_agent_state_number)
+$bag.AddValue("DaAgentState", $da_agent_state)
+$bag.AddValue("DaAgentDown", $da_agent_down)
+
+# $api.return($bag)
+$bag]]></ScriptBody>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+      <ProbeActionModuleType ID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry" Accessibility="Internal">
+        <Configuration></Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <ProbeAction ID="Script" TypeID="Windows!Microsoft.Windows.PowerShellPropertyBagTriggerOnlyProbe">
+                <ScriptName>DZ.Agent.MonitorRegistry.ps1</ScriptName>
+                <ScriptBody><![CDATA[$api = New-Object -ComObject "MOM.ScriptAPI"
+$api.LogScriptEvent("Centrify MP DZ.Agent.MonitorRegistry.ps1 Executed", 101, 4, "HKLM:\SOFTWARE\Centrify\DirectAuthorize\Agent\CurrentState")
+
+$dz_agent_state_number = (Get-ItemProperty -Path HKLM:\SOFTWARE\Centrify\DirectAuthorize\Agent -Name CurrentState).CurrentState
+$dz_agent_state = ""
+$dz_agent_down = 1
+
+switch ($dz_agent_state_number)
+{
+    0 {$dz_agent_state = "Unknown"; Break}
+	1 {$dz_agent_state = "Initializing"; Break}
+	2 {$dz_agent_state = "NotJoinedZone"; Break}
+	3 {$dz_agent_state = "Connected"; $dz_agent_down = 0;  Break}
+	4 {$dz_agent_state = "Disconnected"; Break}
+	5 {$dz_agent_state = "Stopping"; Break}
+	6 {$dz_agent_state = "Stopped"; Break}
+	7 {$dz_agent_state = "Rescue"; Break}
+}
+
+
+$bag = $api.CreatePropertyBag()
+$bag.AddValue("DzAgentStateNumber", $dz_agent_state_number)
+$bag.AddValue("DzAgentState", $dz_agent_state)
+$bag.AddValue("DzAgentDown", $dz_agent_down)
+
+# $api.return($bag)
+$bag]]></ScriptBody>
+                <TimeoutSeconds>60</TimeoutSeconds>
+              </ProbeAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Script" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>System!System.PropertyBagData</OutputType>
+        <TriggerOnly>true</TriggerOnly>
+      </ProbeActionModuleType>
+    </ModuleTypes>
+    <MonitorTypes>
+      <UnitMonitorType ID="Centrify.MP.MonitorType.DA.Agent.MonitorRegistry" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="DaAgentDown" NoDetection="false" />
+          <MonitorTypeState ID="DaAgentUp" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="Centrify.MP.Probe.DA.Agent.MonitorRegistry"></ProbeAction>
+            <ConditionDetection ID="FilterDaDown" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DaAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="FilterDaUp" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DaAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">0</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="DaAgentDown">
+              <Node ID="FilterDaDown">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="DaAgentUp">
+              <Node ID="FilterDaUp">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+          <OnDemandDetections>
+            <OnDemandDetection MonitorTypeStateID="DaAgentDown">
+              <Node ID="FilterDaDown">
+                <Node ID="Probe" />
+              </Node>
+            </OnDemandDetection>
+            <OnDemandDetection MonitorTypeStateID="DaAgentUp">
+              <Node ID="FilterDaUp">
+                <Node ID="Probe" />
+              </Node>
+            </OnDemandDetection>
+          </OnDemandDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+      <UnitMonitorType ID="Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry" Accessibility="Internal">
+        <MonitorTypeStates>
+          <MonitorTypeState ID="DzAgentDown" NoDetection="false" />
+          <MonitorTypeState ID="DzAgentUp" NoDetection="false" />
+        </MonitorTypeStates>
+        <Configuration>
+          <xsd:element name="IntervalSeconds" type="xsd:integer" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+          <xsd:element name="SyncTime" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="IntervalSeconds" Selector="$Config/IntervalSeconds$" ParameterType="int" />
+          <OverrideableParameter ID="SyncTime" Selector="$Config/SyncTime$" ParameterType="string" />
+        </OverrideableParameters>
+        <MonitorImplementation>
+          <MemberModules>
+            <DataSource ID="DS" TypeID="Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag">
+              <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+              <SyncTime>$Config/SyncTime$</SyncTime>
+            </DataSource>
+            <ProbeAction ID="Probe" TypeID="Centrify.MP.Probe.DZ.Agent.MonitorRegistry"></ProbeAction>
+            <ConditionDetection ID="FilterDzDown" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DzAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">1</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+            <ConditionDetection ID="FilterDzUp" TypeID="System!System.ExpressionFilter">
+              <Expression>
+                <SimpleExpression>
+                  <ValueExpression>
+                    <XPathQuery Type="Integer">Property[@Name="DzAgentDown"]</XPathQuery>
+                  </ValueExpression>
+                  <Operator>Equal</Operator>
+                  <ValueExpression>
+                    <Value Type="Integer">0</Value>
+                  </ValueExpression>
+                </SimpleExpression>
+              </Expression>
+            </ConditionDetection>
+          </MemberModules>
+          <RegularDetections>
+            <RegularDetection MonitorTypeStateID="DzAgentDown">
+              <Node ID="FilterDzDown">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+            <RegularDetection MonitorTypeStateID="DzAgentUp">
+              <Node ID="FilterDzUp">
+                <Node ID="DS" />
+              </Node>
+            </RegularDetection>
+          </RegularDetections>
+          <OnDemandDetections>
+            <OnDemandDetection MonitorTypeStateID="DzAgentDown">
+              <Node ID="FilterDzDown">
+                <Node ID="Probe" />
+              </Node>
+            </OnDemandDetection>
+            <OnDemandDetection MonitorTypeStateID="DzAgentUp">
+              <Node ID="FilterDzUp">
+                <Node ID="Probe" />
+              </Node>
+            </OnDemandDetection>
+          </OnDemandDetections>
+        </MonitorImplementation>
+      </UnitMonitorType>
+    </MonitorTypes>
+  </TypeDefinitions>
+  <Monitoring>
+    <Discoveries>
+      <Discovery ID="Centrify.MP.Discovery.DZ.Agent.ForWindows" Target="Windows!Microsoft.Windows.Computer" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Centrify.MP.DZ.Agent" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider">
+          <ComputerName>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <RegistryAttributeDefinitions>
+            <RegistryAttributeDefinition>
+              <AttributeName>AgentExists</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAuthorize\Agent</Path>
+              <PathType>0</PathType>
+              <AttributeType>0</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentTenantUrl</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAuthorize\Agent\CurrentTenantUrl</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentZoneCanonicalName</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAuthorize\Agent\CurrentZoneCanonicalName</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>Version</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAuthorize\Agent\Version</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+          </RegistryAttributeDefinitions>
+          <Frequency>
+    100
+  </Frequency>
+          <ClassId>$MPElement[Name="Centrify.MP.DZ.Agent"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DZ.Agent"]/CurrentTenantUrl$</Name>
+                <Value>$Data/Values/CurrentTenantUrl$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DZ.Agent"]/CurrentZoneCanonicalName$</Name>
+                <Value>$Data/Values/CurrentZoneCanonicalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DZ.Agent"]/Version$</Name>
+                <Value>$Data/Values/Version$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery>Values/AgentExists</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value>true</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </Expression>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Centrify.MP.Discovery.Collector.ForWindows" Target="Windows!Microsoft.Windows.Computer" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Centrify.MP.Collector" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider">
+          <ComputerName>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <RegistryAttributeDefinitions>
+            <RegistryAttributeDefinition>
+              <AttributeName>CollectorExists</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Collector</Path>
+              <PathType>0</PathType>
+              <AttributeType>0</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentDatabase</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Collector\CurrentDatabase</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentInstallation</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Collector\CurrentInstallation</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentAuditStore</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Collector\CurrentAuditStore</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>Version</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Collector\Version</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+          </RegistryAttributeDefinitions>
+          <Frequency>
+    100
+  </Frequency>
+          <ClassId>$MPElement[Name="Centrify.MP.Collector"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.Collector"]/CurrentInstallation$</Name>
+                <Value>$Data/Values/CurrentInstallation$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.Collector"]/CurrentDatabase$</Name>
+                <Value>$Data/Values/CurrentDatabase$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.Collector"]/CurrentAuditStore$</Name>
+                <Value>$Data/Values/CurrentAuditStore$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.Collector"]/Version$</Name>
+                <Value>$Data/Values/Version$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery>Values/CollectorExists</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value>true</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </Expression>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Centrify.MP.Discovery.DA.Agent.ForWindows" Target="Windows!Microsoft.Windows.Computer" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Centrify.MP.DA.Agent" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.FilteredRegistryDiscoveryProvider">
+          <ComputerName>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <RegistryAttributeDefinitions>
+            <RegistryAttributeDefinition>
+              <AttributeName>AgentExists</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent</Path>
+              <PathType>0</PathType>
+              <AttributeType>0</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentCollector</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent\CurrentCollector</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentInstallation</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent\CurrentInstallation</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentAuditStore</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent\CurrentAuditStore</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>Version</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent\Version</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+            <RegistryAttributeDefinition>
+              <AttributeName>CurrentState</AttributeName>
+              <Path>SOFTWARE\Centrify\DirectAudit\Agent\CurrentState</Path>
+              <PathType>1</PathType>
+              <AttributeType>1</AttributeType>
+            </RegistryAttributeDefinition>
+          </RegistryAttributeDefinitions>
+          <Frequency>
+    100
+  </Frequency>
+          <ClassId>$MPElement[Name="Centrify.MP.DA.Agent"]$</ClassId>
+          <InstanceSettings>
+            <Settings>
+              <Setting>
+                <Name>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="System!System.Entity"]/DisplayName$</Name>
+                <Value>$Target/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentInstallation$</Name>
+                <Value>$Data/Values/CurrentInstallation$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentCollector$</Name>
+                <Value>$Data/Values/CurrentCollector$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentAuditStore$</Name>
+                <Value>$Data/Values/CurrentAuditStore$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DA.Agent"]/Version$</Name>
+                <Value>$Data/Values/Version$</Value>
+              </Setting>
+              <Setting>
+                <Name>$MPElement[Name="Centrify.MP.DA.Agent"]/CurrentState$</Name>
+                <Value>$Data/Values/CurrentState$</Value>
+              </Setting>
+            </Settings>
+          </InstanceSettings>
+          <Expression>
+            <SimpleExpression>
+              <ValueExpression>
+                <XPathQuery>Values/AgentExists</XPathQuery>
+              </ValueExpression>
+              <Operator>Equal</Operator>
+              <ValueExpression>
+                <Value>true</Value>
+              </ValueExpression>
+            </SimpleExpression>
+          </Expression>
+        </DataSource>
+      </Discovery>
+      <Discovery ID="Centrify.MP.Centrify.MP.Discovery.DA.NixAgent" Target="Unix!Microsoft.Unix.Computer" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="Centrify.MP.DA.NixAgent">
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="Adclient" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="CurrentInstallation" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="CurrentCollector" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="NssModule" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="AdvancedMonitoring" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="DesktopAuditing" />
+            <Property TypeID="Centrify.MP.DA.NixAgent" PropertyID="Daemon" />
+          </DiscoveryClass>
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="Centrify.MP.DA.NixAgent.Discovery.Datasource">
+          <Interval>300</Interval>
+          <TargetSystem>$Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$</TargetSystem>
+        </DataSource>
+      </Discovery>
+    </Discoveries>
+    <Monitors>
+      <UnitMonitor Accessibility="Internal" Enabled="true" Remotable="true" Priority="Normal" ConfirmDelivery="false" ID="Centrify.MP.Monitor.DA.NixAgent.Daemon" Target="Centrify.MP.DA.NixAgent" ParentMonitorID="Health!System.Health.AvailabilityState" TypeID="UnixAuth!Unix.Authoring.ShellCommand.PropertyBag.MatchesRegExp.TwoState.MonitorType">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+          <AlertParameters>
+            <AlertParameter1>
+              $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+            </AlertParameter1>
+            <AlertParameter2>$Data/Context/DataItem/Property[@Name='PropertyValue']$</AlertParameter2>
+          </AlertParameters>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="StatusOK" MonitorTypeStateID="StatusOK" HealthState="Success" />
+          <OperationalState ID="StatusError" MonitorTypeStateID="StatusError" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <Interval>300</Interval>
+          <TargetSystem>
+            $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+          </TargetSystem>
+          <ShellCommand>dainfo</ShellCommand>
+          <Timeout>60</Timeout>
+          <UserName>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/UserName$</UserName>
+          <Password>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/Password$</Password>
+          <PSScriptName>DA.NixAgent.DaemonMonitor.ps1</PSScriptName>
+          <PSScriptBody><![CDATA[param([string]$StdOut, [string]$StdErr, [string]$ReturnCode)
+
+$ScriptName = "Centrify.MP.DA.NixAgent.DaemonMonitor.ps1"
+
+# Gather script start time
+$StartTime = Get-Date
+
+# Gather who the script is running as
+$WhoAmI = whoami
+
+$api = New-Object -comObject 'MOM.ScriptAPI'
+
+# Log an event for the script starting
+$api.LogScriptEvent($ScriptName, 5555, 0, "Script is starting. *Nix Agent: StdOut: ($StdOut) Running, as $WhoAmI.")
+
+# Clear any previous errors
+if($Error)
+{
+	$Error.Clear()
+}
+
+$str = $StdOut
+         
+#=================================================================================
+# MAIN body of your script
+
+if($str -ne $null -and $str -ne "0" -and $str -ne "")
+{
+	foreach($line in $str.Split([Environment]::NewLine))
+	{
+		$keyVal = $line.Split(":")
+		if($keyVal[0].Trim().ToLower() -eq "daemon status")
+		{
+			$sValue = $keyVal[1].Trim()
+
+			if ($sValue -ne $null)
+			{
+				$bag = $api.CreatePropertyBag()
+				$bag.AddValue("PropertyName", "DaemonStatus")
+				$bag.AddValue("PropertyValue", "Daemon is " + $sValue)
+				$bag
+			}
+		}
+	}
+}
+Else
+{
+	# Log an event the StdOut was NULL
+	$api.LogScriptEvent($ScriptName, 5557, 2, "StdOut was NULL.  Did not get any data from *Nix Shell Command: ($ScriptName)");
+	$bag = $api.CreatePropertyBag()
+	$bag.AddValue("PropertyName", "DaemonStatus")
+	$bag.AddValue("PropertyValue", "Daemon is offline")
+	$bag
+}
+
+# End script and record total runtime
+$EndTime = Get-Date
+$ScriptTime = ($EndTime - $StartTime).TotalSeconds
+# Log an event for script ending and total execution time.
+$api.LogScriptEvent($ScriptName, 5555, 0, "Script has completed.  Runtime was $ScriptTime seconds")]]></PSScriptBody>
+          <FilterExpression>
+            <RegExExpression>
+              <ValueExpression>
+                <XPathQuery>Property[@Name='PropertyName']</XPathQuery>
+              </ValueExpression>
+              <Operator>MatchesRegularExpression</Operator>
+              <Pattern>DaemonStatus</Pattern>
+            </RegExExpression>
+          </FilterExpression>
+          <ValueXPath>Property[@Name='PropertyValue']</ValueXPath>
+          <ErrorRegExp>Offline</ErrorRegExp>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor Accessibility="Internal" Enabled="true" Remotable="true" Priority="Normal" ConfirmDelivery="false" ID="Centrify.MP.Monitor.DA.NixAgent.DiskSpace" Target="Centrify.MP.DA.NixAgent" ParentMonitorID="Health!System.Health.AvailabilityState" TypeID="UnixAuth!Unix.Authoring.ShellCommand.PropertyBag.MatchesRegExp.TwoState.MonitorType">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.NixAgent.DiskSpace.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+          <AlertParameters>
+            <AlertParameter1>
+              $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+            </AlertParameter1>
+            <AlertParameter2>$Data/Context/DataItem/Property[@Name='PropertyValue']$</AlertParameter2>
+          </AlertParameters>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="StatusOK" MonitorTypeStateID="StatusOK" HealthState="Success" />
+          <OperationalState ID="StatusError" MonitorTypeStateID="StatusError" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <Interval>300</Interval>
+          <TargetSystem>
+            $Target/Property[Type="Unix!Microsoft.Unix.Computer"]/NetworkName$
+          </TargetSystem>
+          <ShellCommand>dainfo</ShellCommand>
+          <Timeout>60</Timeout>
+          <UserName>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/UserName$</UserName>
+          <Password>$RunAs[Name="Unix!Microsoft.Unix.ActionAccount"]/Password$</Password>
+          <PSScriptName>DA.NixAgent.DiskSpaceMonitor.ps1</PSScriptName>
+          <PSScriptBody><![CDATA[param([string]$StdOut, [string]$StdErr, [string]$ReturnCode)
+
+$ScriptName = "Centrify.MP.DA.NixAgent.DiskSpaceMonitor.ps1"
+
+# Gather script start time
+$StartTime = Get-Date
+
+# Gather who the script is running as
+$WhoAmI = whoami
+
+$api = New-Object -comObject 'MOM.ScriptAPI'
+
+# Log an event for the script starting
+$api.LogScriptEvent($ScriptName, 4444, 0, "Script is starting. *Nix Agent: StdOut: ($StdOut) Running, as $WhoAmI.")
+
+# Clear any previous errors
+if($Error)
+{
+	$Error.Clear()
+}
+
+$str = $StdOut
+         
+#=================================================================================
+# MAIN body of your script
+
+if($str -ne $null -and $str -ne "0" -and $str -ne "")
+{
+	foreach($line in $str.Split([Environment]::NewLine))
+	{
+		$keyVal = $line.Split(":")
+		if($keyVal[0].Trim().ToLower() -eq "database filesystem use")
+		{
+			foreach($item in $keyVal[1].Trim().Split(","))
+			{
+				$arr = $item.Trim().Split(" ")
+				if($arr.IndexOf("total") -gt -1) {
+					$total = $arr[0]
+				}
+				elseif($arr.IndexOf("free") -gt -1) {
+					$free = $arr[0]
+				}
+			}
+			$percFree = ($free / $total) * 100
+        
+			$bag = $api.CreatePropertyBag()
+
+			if($percFree -lt 20) {
+				$bag.AddValue("PropertyName", "DiskSpaceStatus")
+				$bag.AddValue("PropertyValue", "Free Disk Space ["+ [System.Math]::Round($percFree, 2) +"%] is low, less than 20%")
+			}
+			else {
+				$bag.AddValue("PropertyName", "DiskSpaceStatus")
+				$bag.AddValue("PropertyValue", "ok")
+			}
+			$bag
+		}
+	}
+}
+Else
+{
+	# Log an event the StdOut was NULL
+	$api.LogScriptEvent($ScriptName, 4447, 2, "StdOut was NULL.  Did not get any data from *Nix Shell Command")
+}
+
+# End script and record total runtime
+$EndTime = Get-Date
+$ScriptTime = ($EndTime - $StartTime).TotalSeconds
+# Log an event for script ending and total execution time.
+$api.LogScriptEvent($ScriptName, 4444, 0, "Script has completed.  Runtime was $ScriptTime seconds")]]></PSScriptBody>
+          <FilterExpression>
+            <RegExExpression>
+              <ValueExpression>
+                <XPathQuery>Property[@Name='PropertyName']</XPathQuery>
+              </ValueExpression>
+              <Operator>MatchesRegularExpression</Operator>
+              <Pattern>DiskSpaceStatus</Pattern>
+            </RegExExpression>
+          </FilterExpression>
+          <ValueXPath>Property[@Name='PropertyValue']</ValueXPath>
+          <ErrorRegExp>low</ErrorRegExp>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.DA.Agent.DiskSpace" Accessibility="Public" Enabled="true" Target="Centrify.MP.DA.Agent" ParentMonitorID="Health!System.Health.PerformanceState" Remotable="true" Priority="Normal" TypeID="Perf!System.Performance.ConsecutiveSamplesThreshold" ConfirmDelivery="false">
+        <Category>PerformanceHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.Agent.DiskSpace.AlertMessage">
+          <AlertOnState>Warning</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="ConditionTrue" MonitorTypeStateID="ConditionTrue" HealthState="Warning" />
+          <OperationalState ID="ConditionFalse" MonitorTypeStateID="ConditionFalse" HealthState="Success" />
+        </OperationalStates>
+        <Configuration>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/PrincipalName$</ComputerName>
+          <CounterName>% Free Space</CounterName>
+          <ObjectName>LogicalDisk</ObjectName>
+          <InstanceName>C:</InstanceName>
+          <AllInstances>false</AllInstances>
+          <Frequency>60</Frequency>
+          <Threshold>80</Threshold>
+          <Direction>less</Direction>
+          <NumSamples>3</NumSamples>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.Collector.ServiceRunning" Accessibility="Public" Enabled="true" Target="Centrify.MP.Collector" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="Windows!Microsoft.Windows.CheckNTServiceStateMonitorType" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.Collector.ServiceRunning.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Running" MonitorTypeStateID="Running" HealthState="Success" />
+          <OperationalState ID="NotRunning" MonitorTypeStateID="NotRunning" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <ServiceName>DirectAudit Collector</ServiceName>
+          <CheckStartupType>false</CheckStartupType>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.DA.Agent.ServiceRunning" Accessibility="Public" Enabled="true" Target="Centrify.MP.DA.Agent" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="Windows!Microsoft.Windows.CheckNTServiceStateMonitorType" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.Agent.ServiceRunning.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Running" MonitorTypeStateID="Running" HealthState="Success" />
+          <OperationalState ID="NotRunning" MonitorTypeStateID="NotRunning" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <ServiceName>DirectAudit Agent</ServiceName>
+          <CheckStartupType>false</CheckStartupType>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning" Accessibility="Public" Enabled="true" Target="Centrify.MP.DZ.Agent" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="Windows!Microsoft.Windows.CheckNTServiceStateMonitorType" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DZ.Agent.ServiceRunning.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="Running" MonitorTypeStateID="Running" HealthState="Success" />
+          <OperationalState ID="NotRunning" MonitorTypeStateID="NotRunning" HealthState="Error" />
+        </OperationalStates>
+        <Configuration>
+          <ComputerName>$Target/Host/Property[Type="Windows!Microsoft.Windows.Computer"]/NetworkName$</ComputerName>
+          <ServiceName>DirectAuthorize Agent</ServiceName>
+          <CheckStartupType>false</CheckStartupType>
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.DZ.Agent.RegistryState" Accessibility="Public" Enabled="true" Target="Centrify.MP.DZ.Agent" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DZ.Agent.RegistryState.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="DzAgentDown" MonitorTypeStateID="DzAgentDown" HealthState="Error" />
+          <OperationalState ID="DzAgentUp" MonitorTypeStateID="DzAgentUp" HealthState="Success" />
+        </OperationalStates>
+        <Configuration>
+          <IntervalSeconds>120</IntervalSeconds>
+          <SyncTime />
+        </Configuration>
+      </UnitMonitor>
+      <UnitMonitor ID="Centrify.MP.Monitor.DA.Agent.RegistryState" Accessibility="Public" Enabled="true" Target="Centrify.MP.DA.Agent" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" TypeID="Centrify.MP.MonitorType.DA.Agent.MonitorRegistry" ConfirmDelivery="false">
+        <Category>AvailabilityHealth</Category>
+        <AlertSettings AlertMessage="Centrify.MP.Monitor.DA.Agent.RegistryState.AlertMessage">
+          <AlertOnState>Error</AlertOnState>
+          <AutoResolve>true</AutoResolve>
+          <AlertPriority>Normal</AlertPriority>
+          <AlertSeverity>MatchMonitorHealth</AlertSeverity>
+        </AlertSettings>
+        <OperationalStates>
+          <OperationalState ID="DaAgentDown" MonitorTypeStateID="DaAgentDown" HealthState="Error" />
+          <OperationalState ID="DaAgentUp" MonitorTypeStateID="DaAgentUp" HealthState="Success" />
+        </OperationalStates>
+        <Configuration>
+          <IntervalSeconds>120</IntervalSeconds>
+          <SyncTime />
+        </Configuration>
+      </UnitMonitor>
+    </Monitors>
+  </Monitoring>
+  <Presentation>
+    <Views>
+      <View ID="Centrify.MP.View.State.DZ.Agents" Accessibility="Internal" Target="Centrify.MP.DZ.Agent" TypeID="SC!Microsoft.SystemCenter.StateViewType" Visible="true">
+        <Category>Operations</Category>
+      </View>
+      <View ID="Centrify.MP.View.State.Collectors" Accessibility="Internal" Target="Centrify.MP.Collector" TypeID="SC!Microsoft.SystemCenter.StateViewType" Visible="true">
+        <Category>Operations</Category>
+      </View>
+      <View ID="Centrify.MP.View.State.DA.Agents" Accessibility="Internal" Target="Centrify.MP.DA.Agent" TypeID="SC!Microsoft.SystemCenter.StateViewType" Visible="true">
+        <Category>Operations</Category>
+      </View>
+      <View ID="Centrify.MP.View.State.DA.Agents.Nix" Accessibility="Internal" Target="Centrify.MP.DA.NixAgent" TypeID="SC!Microsoft.SystemCenter.StateViewType" Visible="true">
+        <Category>Operations</Category>
+      </View>
+    </Views>
+    <Folders>
+      <Folder ID="Centrify.MP.Folder" Accessibility="Public" ParentFolder="SC!Microsoft.SystemCenter.Monitoring.ViewFolder.Root" />
+    </Folders>
+    <FolderItems>
+      <FolderItem ElementID="Centrify.MP.View.State.DZ.Agents" Folder="Centrify.MP.Folder" ID="Centrify.MP.View.State.DZ.Agents.FolderItem" />
+      <FolderItem ElementID="Centrify.MP.View.State.Collectors" Folder="Centrify.MP.Folder" ID="Centrify.MP.View.State.Collectors.FolderItem" />
+      <FolderItem ElementID="Centrify.MP.View.State.DA.Agents" Folder="Centrify.MP.Folder" ID="Centrify.MP.View.State.DA.Agents.FolderItem" />
+      <FolderItem ElementID="Centrify.MP.View.State.DA.Agents.Nix" Folder="Centrify.MP.Folder" ID="Centrify.MP.View.State.DA.Agents.Nix.FolderItem" />
+    </FolderItems>
+    <StringResources>
+      <StringResource ID="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DA.NixAgent.DiskSpace.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DA.Agent.DiskSpace.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.Collector.ServiceRunning.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DA.Agent.ServiceRunning.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DZ.Agent.RegistryState.AlertMessage" />
+      <StringResource ID="Centrify.MP.Monitor.DA.Agent.RegistryState.AlertMessage" />
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.Daemon">
+          <Name>Monitor DA *NixAgent Daemon</Name>
+          <Description>Monitors DirectAudit *Nix Agent's State as per output of dainfo command's daemon status</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage">
+          <Name>DirectAudit *Nix Agent daemon Service Down</Name>
+          <Description>DirectAudit *Nix Agent daemon service is down as per dainfo command</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.DiskSpace">
+          <Name>Monitor DA *NixAgent Disk Space</Name>
+          <Description>Monitors DirectAudit *Nix Agent Disk Space is low as per output of dainfo command</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.NixAgent.DiskSpace.AlertMessage">
+          <Name>DirectAudit *Nix Agent Disk Space is low</Name>
+          <Description>DirectAudit *Nix Agent Disk Space is low as per dainfo command</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.DiskSpace">
+          <Name>DirectAudit Agent DiskSpace</Name>
+          <Description>Monitors DirectAudit Agent machine's C drive disk space</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.DiskSpace.AlertMessage">
+          <Name>DirectAudit Agent machine % Free disk space</Name>
+          <Description>DirectAudit Agent machine % Free disk space for C drive is less than 80% for 3 consicutive measurements.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.DiskSpace" SubElementID="ConditionTrue">
+          <Name>ConditionTrue</Name>
+          <Description>ConditionTrue</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.DiskSpace" SubElementID="ConditionFalse">
+          <Name>ConditionFalse</Name>
+          <Description>ConditionFalse</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.Collector.ServiceRunning">
+          <Name>Collector Service Running</Name>
+          <Description>Monitors if Collector service running or not</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.Collector.ServiceRunning.AlertMessage">
+          <Name>Collector Service not running</Name>
+          <Description>The Collector service is no longer running.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.Collector.ServiceRunning" SubElementID="Running">
+          <Name>Running</Name>
+          <Description>Running</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.Collector.ServiceRunning" SubElementID="NotRunning">
+          <Name>NotRunning</Name>
+          <Description>NotRunning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.ServiceRunning">
+          <Name>DirectAudit Agent Service Running</Name>
+          <Description>Monitors if DirectAudit Agent service running or not</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.ServiceRunning.AlertMessage">
+          <Name>DirectAudit Agent Service not running</Name>
+          <Description>The DirectAudit Agent service is no longer running.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.ServiceRunning" SubElementID="Running">
+          <Name>Running</Name>
+          <Description>Running</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.ServiceRunning" SubElementID="NotRunning">
+          <Name>NotRunning</Name>
+          <Description>NotRunning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning">
+          <Name>DirectAuthorize Agent Service Running</Name>
+          <Description>Monitors if DirectAuthorize Agent service running or not</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning.AlertMessage">
+          <Name>DirectAuthorize Agent Service not running</Name>
+          <Description>The DirectAuthorize Agent service is no longer running.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning" SubElementID="Running">
+          <Name>Running</Name>
+          <Description>Running</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.ServiceRunning" SubElementID="NotRunning">
+          <Name>NotRunning</Name>
+          <Description>NotRunning</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.RegistryState">
+          <Name>DirectAuthorize Agent Registry State</Name>
+          <Description>Monitors DirectAuthorize Agent's State as per registry entry.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.RegistryState.AlertMessage">
+          <Name>DirectAuthorize Agent Service Down</Name>
+          <Description>DirectAuthorize Agent service is down as per registry state.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.RegistryState" SubElementID="DzAgentDown">
+          <Name>DzAgentDown</Name>
+          <Description>DzAgentDown</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DZ.Agent.RegistryState" SubElementID="DzAgentUp">
+          <Name>DzAgentUp</Name>
+          <Description>DzAgentUp</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.RegistryState">
+          <Name>DirectAudit Agent Registry State</Name>
+          <Description>Monitors DirectAudit Agent's State as per registry entry.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.RegistryState.AlertMessage">
+          <Name>DirectAudit Agent Service Down</Name>
+          <Description>DirectAudit Agent service is down as per registry state.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.RegistryState" SubElementID="DaAgentDown">
+          <Name>DaAgentDown</Name>
+          <Description>DaAgentDown</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Monitor.DA.Agent.RegistryState" SubElementID="DaAgentUp">
+          <Name>DaAgentUp</Name>
+          <Description>DaAgentUp</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Folder">
+          <Name>Centrify</Name>
+          <Description>Centrify Management Pack</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.View.State.DZ.Agents">
+          <Name>DirectAuthorize Agents</Name>
+          <Description>All Centrify DZ Agents in managed SCOM agent machines.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.View.State.Collectors">
+          <Name>Collectors</Name>
+          <Description>All Centrify Collectors in managed SCOM agent machines.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.View.State.DA.Agents">
+          <Name>DirectAudit Agents (Windows)</Name>
+          <Description>All Centrify DA Agents in managed SCOM agent machines.</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.View.State.DA.Agents.Nix">
+          <Name>DirectAudit Agents (*Nix)</Name>
+          <Description>Description for the new view</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP">
+          <Name>Centrify MP</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent">
+          <Name>Centrify DirectAudit Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.ComputerHosts.DA.Agent">
+          <Name>Centrify Computer Hosts DirectAudit Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentInstallation">
+          <Name>Current Installation</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentCollector">
+          <Name>Current Collector</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentAuditStore">
+          <Name>Current Audit Store</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="Version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentState">
+          <Name>Current State</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Collector">
+          <Name>Centrify MP Collector</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.ComputerHostsCollector">
+          <Name>Centrify MP Computer Hosts Collector</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Collector" SubElementID="CurrentInstallation">
+          <Name>Current Installation</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Collector" SubElementID="CurrentAuditStore">
+          <Name>Current Audit Store</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Collector" SubElementID="CurrentDatabase">
+          <Name>Current Database</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Collector" SubElementID="Version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent">
+          <Name>Centrify DirectAuthorize Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.ComputerHosts.DZ.Agent">
+          <Name>Centrify Computer Hosts DirectAuthorize Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="CurrentTenantUrl">
+          <Name>Current Tenant URL</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="CurrentZoneCanonicalName">
+          <Name>Current Zone Canonical Name</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="Version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent">
+          <Name>Centrify MP *Nix Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="Adclient">
+          <Name>Adclient</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="Daemon">
+          <Name>Daemon Status</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="CurrentInstallation">
+          <Name>Current Installation</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="CurrentCollector">
+          <Name>Current Collector</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="NssModule">
+          <Name>NSS Module</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="AdvancedMonitoring">
+          <Name>Advanced Monitoring</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="DesktopAuditing">
+          <Name>Desktop Auditing</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Discovery.DZ.Agent.ForWindows">
+          <Name>Discover Centrify DirectAuthorize Agent</Name>
+          <Description>Discover Centrify DirectAuthorize Agent on Windows machine</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Discovery.Collector.ForWindows">
+          <Name>Discover Centrify Collector</Name>
+          <Description>Discover Centrify Collector on Windows machine</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Discovery.DA.Agent.ForWindows">
+          <Name>Discover Centrify DirectAudit Agent</Name>
+          <Description>Discover Centrify DirectAudit Agent on Windows machine</Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.Centrify.MP.Discovery.DA.NixAgent">
+          <Name>Centrify MP *Nix Agent Discovery</Name>
+          <Description>Centrify MP *Nix Agent Extended Class Discovery</Description>
+        </DisplayString>
+      </DisplayStrings>
+      <KnowledgeArticles></KnowledgeArticles>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

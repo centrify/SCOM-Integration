@@ -1,0 +1,108 @@
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*6*10*ClassType
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*6*10*ClassType
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.DZ.Agent*6*10*ClassType
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*5*10*ClassType
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.ComputerHosts.DA.Agent*19*10*RelationshipType
+Service Model\Classes\Collector.mpx*Centrify.MP.ComputerHostsCollector*18*10*RelationshipType
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.ComputerHosts.DZ.Agent*17*10*RelationshipType
+Health Model\Modules.mpx*Centrify.MP.DataSource.DA.Agent.MonitorRegistry.PropertyBag*8*8*DataSourceModuleType
+Health Model\Modules.mpx*Centrify.MP.DataSource.DZ.Agent.MonitorRegistry.PropertyBag*38*8*DataSourceModuleType
+Health Model\Modules.mpx*Centrify.MP.DA.NixAgent.Discovery.Datasource*69*8*DataSourceModuleType
+Health Model\Modules.mpx*Centrify.MP.DA.NixAgent.ShellCommandDiscovery.Datasource*120*8*DataSourceModuleType
+Health Model\Modules.mpx*Centrify.MP.Probe.DA.Agent.MonitorRegistry*160*8*ProbeActionModuleType
+Health Model\Modules.mpx*Centrify.MP.Probe.DZ.Agent.MonitorRegistry*181*8*ProbeActionModuleType
+Health Model\Modules.mpx*Centrify.MP.MonitorType.DA.Agent.MonitorRegistry*208*8*UnitMonitorType
+Health Model\Modules.mpx*Centrify.MP.MonitorType.DZ.Agent.MonitorRegistry*285*8*UnitMonitorType
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.DZ.Agent.ForWindows*6*8*Discovery
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.Collector.ForWindows*80*8*Discovery
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.DA.Agent.ForWindows*164*8*Discovery
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Centrify.MP.Discovery.DA.NixAgent*258*8*Discovery
+Health Model\DA.NixAgent.DaemonMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.Daemon*10*8*UnitMonitor
+Health Model\DA.NixAgent.DiskSpaceMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.DiskSpace*9*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace*6*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning*30*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning*48*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning*66*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState*84*8*UnitMonitor
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState*101*8*UnitMonitor
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DZ.Agents*6*8*View
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.Collectors*9*8*View
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents*12*8*View
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents.Nix*15*8*View
+Presentation\Folders.mpx*Centrify.MP.Folder*5*8*Folder
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DZ.Agents.FolderItem*20*8*FolderItem
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.Collectors.FolderItem*21*8*FolderItem
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents.FolderItem*22*8*FolderItem
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents.Nix.FolderItem*23*8*FolderItem
+Health Model\DA.NixAgent.DaemonMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage*61*8*StringResource
+Health Model\DA.NixAgent.DiskSpaceMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.DiskSpace.AlertMessage*59*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace.AlertMessage*122*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning.AlertMessage*123*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning.AlertMessage*124*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning.AlertMessage*125*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState.AlertMessage*126*8*StringResource
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState.AlertMessage*127*8*StringResource
+Health Model\DA.NixAgent.DaemonMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.Daemon*67*10*DisplayString
+Health Model\DA.NixAgent.DaemonMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.Daemon.AlertMessage*71*10*DisplayString
+Health Model\DA.NixAgent.DiskSpaceMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.DiskSpace*65*10*DisplayString
+Health Model\DA.NixAgent.DiskSpaceMonitor.mpx*Centrify.MP.Monitor.DA.NixAgent.DiskSpace.AlertMessage*69*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace*133*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace.AlertMessage*137*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace*141*10*DisplayString*SubElementID*ConditionTrue
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.DiskSpace*145*10*DisplayString*SubElementID*ConditionFalse
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning*149*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning.AlertMessage*153*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning*157*10*DisplayString*SubElementID*Running
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.Collector.ServiceRunning*161*10*DisplayString*SubElementID*NotRunning
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning*165*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning.AlertMessage*169*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning*173*10*DisplayString*SubElementID*Running
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.ServiceRunning*177*10*DisplayString*SubElementID*NotRunning
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning*181*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning.AlertMessage*185*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning*189*10*DisplayString*SubElementID*Running
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.ServiceRunning*193*10*DisplayString*SubElementID*NotRunning
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState*197*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState.AlertMessage*201*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState*205*10*DisplayString*SubElementID*DzAgentDown
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DZ.Agent.RegistryState*209*10*DisplayString*SubElementID*DzAgentUp
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState*213*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState.AlertMessage*217*10*DisplayString
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState*221*10*DisplayString*SubElementID*DaAgentDown
+Health Model\Monitors.mptg.mpx*Centrify.MP.Monitor.DA.Agent.RegistryState*225*10*DisplayString*SubElementID*DaAgentUp
+Presentation\Folders.mpx*Centrify.MP.Folder*14*10*DisplayString
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DZ.Agents*29*10*DisplayString
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.Collectors*33*10*DisplayString
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents*37*10*DisplayString
+Presentation\Views.mptg.mpx*Centrify.MP.View.State.DA.Agents.Nix*41*10*DisplayString
+Project.mpx*Centrify.MP*5*10*DisplayString
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*32*10*DisplayString
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.ComputerHosts.DA.Agent*36*10*DisplayString
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*41*10*DisplayString*SubElementID*CurrentInstallation
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*45*10*DisplayString*SubElementID*CurrentCollector
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*49*10*DisplayString*SubElementID*CurrentAuditStore
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*53*10*DisplayString*SubElementID*Version
+Service Model\Classes\DA.Agent.mpx*Centrify.MP.DA.Agent*57*10*DisplayString*SubElementID*CurrentState
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*31*10*DisplayString
+Service Model\Classes\Collector.mpx*Centrify.MP.ComputerHostsCollector*35*10*DisplayString
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*40*10*DisplayString*SubElementID*CurrentInstallation
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*44*10*DisplayString*SubElementID*CurrentAuditStore
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*48*10*DisplayString*SubElementID*CurrentDatabase
+Service Model\Classes\Collector.mpx*Centrify.MP.Collector*52*10*DisplayString*SubElementID*Version
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.DZ.Agent*30*10*DisplayString
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.ComputerHosts.DZ.Agent*34*10*DisplayString
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.DZ.Agent*39*10*DisplayString*SubElementID*CurrentTenantUrl
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.DZ.Agent*43*10*DisplayString*SubElementID*CurrentZoneCanonicalName
+Service Model\Classes\DZ.Agent.mpx*Centrify.MP.DZ.Agent*47*10*DisplayString*SubElementID*Version
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*20*10*DisplayString
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*24*10*DisplayString*SubElementID*Adclient
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*27*10*DisplayString*SubElementID*Daemon
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*30*10*DisplayString*SubElementID*CurrentInstallation
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*33*10*DisplayString*SubElementID*CurrentCollector
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*36*10*DisplayString*SubElementID*NssModule
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*39*10*DisplayString*SubElementID*AdvancedMonitoring
+Service Model\Classes\DA.NixAgent.mpx*Centrify.MP.DA.NixAgent*42*10*DisplayString*SubElementID*DesktopAuditing
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.DZ.Agent.ForWindows*281*10*DisplayString
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.Collector.ForWindows*285*10*DisplayString
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Discovery.DA.Agent.ForWindows*289*10*DisplayString
+Service Model\Discoveries\RegistryDiscoveries.mptg.mpx*Centrify.MP.Centrify.MP.Discovery.DA.NixAgent*293*10*DisplayString

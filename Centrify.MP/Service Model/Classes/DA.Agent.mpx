@@ -1,0 +1,65 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <ClassType ID="Centrify.MP.DA.Agent" Base="Windows!Microsoft.Windows.ApplicationComponent"
+                   Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="CurrentInstallation" Key="false" Type="string" />
+          <Property ID="CurrentCollector" Key="false" Type="string" />
+          <Property ID="CurrentAuditStore" Key="false" Type="string" />
+          <Property ID="Version" Key="false" Type="string" />
+          <Property ID="CurrentState" Key="false" Type="int" />
+        </ClassType>
+
+      </ClassTypes>
+
+      <RelationshipTypes>
+
+        <RelationshipType ID="Centrify.MP.ComputerHosts.DA.Agent" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="Windows!Microsoft.Windows.Computer"/>
+          <Target ID="Target" Type="Centrify.MP.DA.Agent"/>
+        </RelationshipType>
+
+      </RelationshipTypes>
+
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <DisplayString ElementID="Centrify.MP.DA.Agent">
+          <Name>Centrify DirectAudit Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.ComputerHosts.DA.Agent">
+          <Name>Centrify Computer Hosts DirectAudit Agent</Name>
+          <Description></Description>
+        </DisplayString>
+
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentInstallation">
+          <Name>Current Installation</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentCollector">
+          <Name>Current Collector</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentAuditStore">
+          <Name>Current Audit Store</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="Version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.Agent" SubElementID="CurrentState">
+          <Name>Current State</Name>
+          <Description></Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -1,0 +1,55 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+
+        <ClassType ID="Centrify.MP.DZ.Agent" Base="Windows!Microsoft.Windows.ApplicationComponent"
+                   Accessibility="Public" Abstract="false" Hosted="true" Singleton="false">
+          <Property ID="CurrentTenantUrl" Key="false" Type="string" />
+          <Property ID="CurrentZoneCanonicalName" Key="false" Type="string" />
+          <Property ID="Version" Key="false" Type="string" />
+        </ClassType>
+
+      </ClassTypes>
+
+      <RelationshipTypes>
+
+        <RelationshipType ID="Centrify.MP.ComputerHosts.DZ.Agent" Accessibility="Public" Abstract="false" Base="System!System.Hosting">
+          <Source ID="Source" Type="Windows!Microsoft.Windows.Computer"/>
+          <Target ID="Target" Type="Centrify.MP.DZ.Agent"/>
+        </RelationshipType>
+
+      </RelationshipTypes>
+
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+
+        <DisplayString ElementID="Centrify.MP.DZ.Agent">
+          <Name>Centrify DirectAuthorize Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.ComputerHosts.DZ.Agent">
+          <Name>Centrify Computer Hosts DirectAuthorize Agent</Name>
+          <Description></Description>
+        </DisplayString>
+
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="CurrentTenantUrl">
+          <Name>Current Tenant URL</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="CurrentZoneCanonicalName">
+          <Name>Current Zone Canonical Name</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DZ.Agent" SubElementID="Version">
+          <Name>Version</Name>
+          <Description></Description>
+        </DisplayString>
+
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

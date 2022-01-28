@@ -1,0 +1,48 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="Centrify.MP.DA.NixAgent" Accessibility="Public" Abstract="false" Base="Unix!Microsoft.Unix.Computer" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="Adclient" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Daemon" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CurrentInstallation" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CurrentCollector" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="NssModule" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="AdvancedMonitoring" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="DesktopAuditing" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent">
+          <Name>Centrify MP *Nix Agent</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="Adclient">
+          <Name>Adclient</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="Daemon">
+          <Name>Daemon Status</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="CurrentInstallation">
+          <Name>Current Installation</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="CurrentCollector">
+          <Name>Current Collector</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="NssModule">
+          <Name>NSS Module</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="AdvancedMonitoring">
+          <Name>Advanced Monitoring</Name>
+        </DisplayString>
+        <DisplayString ElementID="Centrify.MP.DA.NixAgent" SubElementID="DesktopAuditing">
+          <Name>Desktop Auditing</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
