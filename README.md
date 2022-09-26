@@ -1,5 +1,12 @@
 
 # Integrating SCOM with Server Suite
+
+# PUBLIC ARCHIVE
+
+> ***NOTE***
+> This repo is archived.
+> This is still available under the licensing terms, but is not being actively developed or updated any further. Please see [DelineaXPM](https://github.com/DelineaXPM) for active projects.
+
 This documentation is for people who are deploying the Centrify custom SCOM management pack. This documentation includes information about prerequisites, setup, and how to use the Centrify custom SCOM management pack.
 
 ## Prerequisites
